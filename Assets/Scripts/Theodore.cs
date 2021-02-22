@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Theodore : MonoBehaviour
 {
-    public float chewTime;
-    private float chewTimer;
+    //public float chewTime;
+    //private float chewTimer;
 
     private Animator animator;
     [HideInInspector]
@@ -14,32 +14,66 @@ public class Theodore : MonoBehaviour
     [HideInInspector]
     public bool hasHat, hasGlasses, hasScarf;
 
+    private List<Sushi> colliders;
+
     private void Awake()
     {
-        chewTimer = chewTime;
+        //chewTimer = chewTime;
         animator = this.GetComponent<Animator>();
+        colliders = new List<Sushi>();
         UpdateAccessories();
     }
     private void Update()
     {
-        chewTimer -= Time.deltaTime;
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (chewTimer <= 0 && !isEating && collision.CompareTag("Sushi"))
+        //chewTimer -= Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.Space) && colliders.Count > 0)
         {
-            StartCoroutine(Eat(collision.transform.GetComponent<Sushi>()));
-            chewTimer = chewTime;       
+            for (int i=0; i < colliders.Count; i++)
+            {
+                if (colliders[0].CompareTag("Sushi"))
+                {
+                    colliders[0].TakeDamage();
+                    StartCoroutine(StartEatAnimation());
+                    break;
+                }
+            }
         }
     }
 
-    IEnumerator Eat(Sushi victim)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Sushi sushi = collision.GetComponent<Sushi>();
+        if (!colliders.Contains(sushi))
+        {
+            colliders.Add(sushi);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Sushi sushi = collision.GetComponent<Sushi>();
+        colliders.Remove(sushi);
+    }
+
+    /*
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && collision.CompareTag("Sushi"))
+        {
+            //StartCoroutine(Eat(collision.transform.GetComponent<Sushi>()));
+            //chewTimer = chewTime; 
+            Debug.Log("AAAAAAAAAAAAAA");
+            animator.SetTrigger("Eating");
+            collision.GetComponent<Sushi>().TakeDamage();
+        }
+    }
+    */
+
+    IEnumerator StartEatAnimation()
     {
         isEating = true;
         animator.SetBool("Eating", true);
-        victim.TakeDamage();
-        yield return new WaitForSeconds(chewTime);
+        yield return new WaitForSeconds(1f);
         animator.SetBool("Eating", false);
         isEating = false;
     }

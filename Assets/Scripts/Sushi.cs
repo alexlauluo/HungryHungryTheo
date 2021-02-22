@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Sushi : MonoBehaviour
 {
-    public int health; //temporarily keep constant at 3
+    public int maxHealth;
+    private int currHealth;
 
     public Sprite[] images;
 
@@ -13,13 +14,14 @@ public class Sushi : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = this.GetComponent<SpriteRenderer>();
+        currHealth = maxHealth;
     }
 
     public void TakeDamage()
     {
-        health--;
+        currHealth--;
         UpdateSprite();
-        if (health <= 0)
+        if (currHealth <= 0)
         {
             Eaten();
         }
@@ -34,6 +36,13 @@ public class Sushi : MonoBehaviour
 
     private void UpdateSprite()
     {
-        spriteRenderer.sprite = images[health];
+        int spriteHealth = (int)((float)currHealth / maxHealth * 3);
+        if (currHealth != 0 && spriteHealth == 0)
+        {
+            spriteRenderer.sprite = images[1];
+        } else
+        {
+            spriteRenderer.sprite = images[(int)((float)currHealth / maxHealth * 3)];
+        }
     }
 }

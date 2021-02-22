@@ -8,6 +8,10 @@ public class Spawner : MonoBehaviour
     public float spawnTime;
     private float spawnTimer;
 
+    public bool buffet;
+    public Sushi[] sushiList;
+    private int sushiCounter;
+
     private void Awake()
     {
         spawnTimer = spawnTime;
@@ -17,13 +21,32 @@ public class Spawner : MonoBehaviour
     {
         if (spawnTimer <= 0)
         {
-            Instantiate(prefabs[Random.Range(0, prefabs.Count)], this.transform.position, Quaternion.identity);
+            if (buffet)
+            {
+                SpawnRandom();
+            } else
+            {
+                SpawnInOrder();
+            }
             spawnTimer = spawnTime;
         } else
         {
             spawnTimer -= Time.deltaTime;
         }
+
     }
 
+    private void SpawnInOrder()
+    {
+        if (sushiCounter < sushiList.Length)
+        {
+            Instantiate(sushiList[sushiCounter], this.transform.position, Quaternion.identity);
+            sushiCounter++;
+        }
+    }
 
+    private void SpawnRandom()
+    {
+        Instantiate(prefabs[Random.Range(0, prefabs.Count)], this.transform.position, Quaternion.identity);
+    }
 }

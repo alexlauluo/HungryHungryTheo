@@ -6,7 +6,7 @@ public class DeathZone : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Sushi"))
+        if (collision.CompareTag("Sushi") || (collision.CompareTag("Plate")))
         {
             Destroy(collision.gameObject);
         }
