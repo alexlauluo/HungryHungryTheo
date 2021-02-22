@@ -5,15 +5,19 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    //assume everything is zero-indexed, i.e. level 2 is found in [1]
 
-    public int levelOneHS;
-    public int levelTwoHS;
-    public int levelThreeHS;
-    public int buffetHS;
+    //highscores for each lvl
+    public int[] lvlHS;
 
-    public bool unlockLevelTwo;
-    public bool unlockLevelThree;
-    public bool unlockBuffet;
+    //earned stars for each lvl
+    public int[] lvlStar;
+
+    //max score possible per lvl, change later to not be hardcoded
+    public int[] lvlMax;
+
+    //percents required to fullfill star
+    public float[] StarPercent;
 
     private void Awake()
     {
@@ -26,11 +30,5 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
         DontDestroyOnLoad(gameObject);
-    }
-
-    
-    void Update()
-    {
-        
     }
 }

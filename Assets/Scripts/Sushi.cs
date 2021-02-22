@@ -11,10 +11,13 @@ public class Sushi : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    private SushiCounter sushiCounter;
+
     private void Awake()
     {
         spriteRenderer = this.GetComponent<SpriteRenderer>();
         currHealth = maxHealth;
+        sushiCounter = FindObjectOfType<SushiCounter>();
     }
 
     public void TakeDamage()
@@ -44,5 +47,10 @@ public class Sushi : MonoBehaviour
         {
             spriteRenderer.sprite = images[(int)((float)currHealth / maxHealth * 3)];
         }
+    }
+
+    private void OnDestroy()
+    {
+        sushiCounter.DecrementCounter();
     }
 }
