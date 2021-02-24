@@ -19,6 +19,8 @@ public class LevelManager : MonoBehaviour
     private Text ScoreText;
     private int Score;
 
+    private int sushiLeft;
+
     private void Awake()
     {
         instance = this;
@@ -35,6 +37,8 @@ public class LevelManager : MonoBehaviour
         counterText = UICanvas.transform.Find("Sushi Counter").GetComponentInChildren<Text>();
         counter = spawner.sushiList.Length;
         counterText.text = counter.ToString();
+
+        sushiLeft = spawner.sushiList.Length;
     }
 
     public void UpdateScore(int points)
@@ -61,4 +65,15 @@ public class LevelManager : MonoBehaviour
             GameManager.instance.lvlHS[level] = Score;
         }
     }
+
+    public void SushiLeave()
+    {
+        sushiLeft--;
+        if (sushiLeft == 0)
+        {
+            UpdateHS();
+            GameManager.instance.LoadLevel("Menu");
+        }
+    }
+
 }

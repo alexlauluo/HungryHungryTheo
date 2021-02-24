@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Sushi : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Sushi : MonoBehaviour
 
     public Sprite[] images;
     private SpriteRenderer spriteRenderer;
+    public GameObject HealthTextPrefab;
 
     private void Awake()
     {
@@ -25,6 +27,10 @@ public class Sushi : MonoBehaviour
         if (currHealth <= 0)
         {
             Eaten();
+        } else
+        {
+            GameObject HealthText = Instantiate(HealthTextPrefab, this.transform.position + new Vector3(0, 0.8f, 0), Quaternion.identity, this.transform);
+            HealthText.GetComponent<TextMesh>().text = currHealth.ToString();
         }
     }
 
@@ -50,6 +56,6 @@ public class Sushi : MonoBehaviour
 
     private void OnDestroy()
     {
-        LevelManager.instance.DecrementCounter();
+        LevelManager.instance.SushiLeave();
     }
 }

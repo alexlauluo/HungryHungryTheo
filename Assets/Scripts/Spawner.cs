@@ -30,6 +30,7 @@ public class Spawner : MonoBehaviour
                 SpawnInOrder();
             }
             spawnTimer = spawnTime;
+            LevelManager.instance.DecrementCounter();
         } else
         {
             spawnTimer -= Time.deltaTime;
@@ -41,7 +42,7 @@ public class Spawner : MonoBehaviour
     {
         if (sushiCounter < sushiList.Length)
         {
-            Instantiate(sushiList[sushiCounter], this.transform.position, Quaternion.identity);
+            Sushi sushi = Instantiate(sushiList[sushiCounter], this.transform.position, Quaternion.identity);
             sushiCounter++;
         }
     }

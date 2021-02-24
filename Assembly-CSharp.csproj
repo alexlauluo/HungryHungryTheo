@@ -61,12 +61,14 @@
     <Compile Include="Assets\Scripts\ConveyorBelt.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\AccessoriesButton.cs" />
+    <Compile Include="Assets\Scripts\LevelManager.cs" />
     <Compile Include="Assets\Scripts\GachaponManager.cs" />
     <Compile Include="Assets\Scripts\Theodore.cs" />
     <Compile Include="Assets\Scripts\Draggable.cs" />
     <Compile Include="Assets\Scripts\DeathZone.cs" />
     <Compile Include="Assets\Scripts\MenuManager.cs" />
-    <Compile Include="Assets\Scripts\LevelManager.cs" />
+    <Compile Include="Assets\Scripts\SushiHealthText.cs" />
+    <Compile Include="Assets\LevelButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

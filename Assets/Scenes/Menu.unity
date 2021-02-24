@@ -881,7 +881,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7255762924063768796, guid: f87c30c77a6ec8a45b5e5e23498e1aa8, type: 3}
       propertyPath: lvlMax.Array.data[0]
-      value: 1000
+      value: 2600
       objectReference: {fileID: 0}
     - target: {fileID: 7255762924063768796, guid: f87c30c77a6ec8a45b5e5e23498e1aa8, type: 3}
       propertyPath: lvlMax.Array.data[1]
@@ -1003,6 +1003,10 @@ PrefabInstance:
     - target: {fileID: 870086621720270255, guid: 8aa5e777ca91386439a2ab5887e24ba3, type: 3}
       propertyPath: m_Name
       value: Level 3 Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 1571991829541556627, guid: 8aa5e777ca91386439a2ab5887e24ba3, type: 3}
+      propertyPath: level
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9071260817929334730, guid: 8aa5e777ca91386439a2ab5887e24ba3, type: 3}
       propertyPath: m_Pivot.x
@@ -1225,6 +1229,10 @@ PrefabInstance:
     - target: {fileID: 870086621720270255, guid: 8aa5e777ca91386439a2ab5887e24ba3, type: 3}
       propertyPath: m_Name
       value: Level 2 Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 1571991829541556627, guid: 8aa5e777ca91386439a2ab5887e24ba3, type: 3}
+      propertyPath: level
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9071260817929334730, guid: 8aa5e777ca91386439a2ab5887e24ba3, type: 3}
       propertyPath: m_Pivot.x
@@ -1970,37 +1978,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 1384631723}
     m_Modifications:
     - target: {fileID: 793671401548146374, guid: 8aa5e777ca91386439a2ab5887e24ba3, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 793671401548146374, guid: 8aa5e777ca91386439a2ab5887e24ba3, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 793671401548146374, guid: 8aa5e777ca91386439a2ab5887e24ba3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2115801716}
-    - target: {fileID: 793671401548146374, guid: 8aa5e777ca91386439a2ab5887e24ba3, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 793671401548146374, guid: 8aa5e777ca91386439a2ab5887e24ba3, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadLevel
-      objectReference: {fileID: 0}
-    - target: {fileID: 793671401548146374, guid: 8aa5e777ca91386439a2ab5887e24ba3, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 793671401548146374, guid: 8aa5e777ca91386439a2ab5887e24ba3, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Level 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 793671401548146374, guid: 8aa5e777ca91386439a2ab5887e24ba3, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 870086621720270255, guid: 8aa5e777ca91386439a2ab5887e24ba3, type: 3}
       propertyPath: m_Name
       value: Level 1 Button
