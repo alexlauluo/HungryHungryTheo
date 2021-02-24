@@ -7,17 +7,15 @@ public class Sushi : MonoBehaviour
     public int maxHealth;
     private int currHealth;
 
+    public int points;
+
     public Sprite[] images;
-
     private SpriteRenderer spriteRenderer;
-
-    private SushiCounter sushiCounter;
 
     private void Awake()
     {
         spriteRenderer = this.GetComponent<SpriteRenderer>();
         currHealth = maxHealth;
-        sushiCounter = FindObjectOfType<SushiCounter>();
     }
 
     public void TakeDamage()
@@ -34,7 +32,8 @@ public class Sushi : MonoBehaviour
     {
         this.tag = "Plate";
         this.GetComponent<CircleCollider2D>().isTrigger = true; //removes the physical hitbox for the plate by turning it into a trigger
-        FindObjectOfType<GachaponManager>().Enable();
+        //FindObjectOfType<GachaponManager>().Enable();
+        LevelManager.instance.UpdateScore(points);
     }
 
     private void UpdateSprite()
@@ -51,6 +50,6 @@ public class Sushi : MonoBehaviour
 
     private void OnDestroy()
     {
-        sushiCounter.DecrementCounter();
+        LevelManager.instance.DecrementCounter();
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -31,4 +32,11 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }
+
+    //Scene names: "Level 1", "Level 2", ..., "Buffet Mode"
+    public void LoadLevel(string name)
+    {
+        SceneManager.LoadScene(name);
+    }
+
 }

@@ -8,6 +8,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -3173616537326841607, guid: 487b14d4dac31954f940ccb65ac09afc, type: 3}
+      propertyPath: points
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: -3173616537326841607, guid: 487b14d4dac31954f940ccb65ac09afc, type: 3}
       propertyPath: images.Array.data[1]
       value: 
       objectReference: {fileID: 21300000, guid: e2b0bf38ee728b243978fa7d8526a6dd, type: 3}
@@ -69,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6848766915458742457, guid: 487b14d4dac31954f940ccb65ac09afc, type: 3}
       propertyPath: m_Name
-      value: Sushi_3
+      value: Sushi_3 Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 487b14d4dac31954f940ccb65ac09afc, type: 3}
