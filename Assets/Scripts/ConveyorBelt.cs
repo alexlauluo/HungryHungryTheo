@@ -7,6 +7,11 @@ public class ConveyorBelt : MonoBehaviour
     public float speed;
     private Vector2 direction = new Vector2(-1, 0); //hard code conveyor belt to move left
 
+    void Start(){
+        Animator animator = GetComponent<Animator>();
+        animator.speed = (float) speed / 100;
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {   
         if (collision.CompareTag("Sushi") || collision.CompareTag("Plate"))

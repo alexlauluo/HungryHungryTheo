@@ -9,28 +9,26 @@ public class Spawner : MonoBehaviour
     public float spawnTime;
     private float spawnTimer;
 
-    public bool buffet;
-    public Sushi[] sushiList;
-    private int sushiCounter;
+    private Level level;
+    private LevelManager levelManager;
 
-    private void Awake()
+    // Nonbuffet
+    private int currentSushi = 0;
+
+    private void Start()
     {
         spawnTimer = spawnTime;
+        levelManager = GetComponent<LevelManager>();
+        level = levelManager.level;
     }
 
     private void Update()
     {
         if (spawnTimer <= 0)
         {
-            if (buffet)
-            {
-                SpawnRandom();
-            } else
-            {
-                SpawnInOrder();
-            }
+
+            Spawn(level == null);
             spawnTimer = spawnTime;
-            LevelManager.instance.DecrementCounter();
         } else
         {
             spawnTimer -= Time.deltaTime;
@@ -38,17 +36,13 @@ public class Spawner : MonoBehaviour
 
     }
 
-    private void SpawnInOrder()
+    private void Spawn(bool buffet)
     {
-        if (sushiCounter < sushiList.Length)
+        if (buffet || currentSushi < level.spawnString.Length)
         {
-            Sushi sushi = Instantiate(sushiList[sushiCounter], this.transform.position, Quaternion.identity);
-            sushiCounter++;
+            int sushiIndex = buffet ? Random.Range(0, prefabs.Count) : level.spawnString[currentSushi++] - '0';
+            Sushi sushi = Instantiate(prefabs[sushiIndex], this.transform.position, Quaternion.identity).GetComponent<Sushi>();
+            sushi.Init(levelManager, sushiIndex);
         }
-    }
-
-    private void SpawnRandom()
-    {
-        Instantiate(prefabs[Random.Range(0, prefabs.Count)], this.transform.position, Quaternion.identity);
     }
 }

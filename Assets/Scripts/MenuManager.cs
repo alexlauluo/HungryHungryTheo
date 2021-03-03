@@ -38,6 +38,14 @@ public class MenuManager : MonoBehaviour
         StartCanvas.SetActive(true);
     }
 
+    public void PlayStory(){
+        GameManager.instance.LoadLevel("Story");
+    }
+
+    public void PlayLevel(string name){
+        GameManager.instance.LoadLevel(name);
+    }
+
     private void DisableAll()
     {
         StartCanvas.SetActive(false);
@@ -45,32 +53,53 @@ public class MenuManager : MonoBehaviour
         CreditsCanvas.SetActive(false);
     }
 
-    private void UpdateLevel()
+    public void PlaySound(string name){
+        AudioManager.instance.Play(name);
+    }
+
+    public void UpdateLevel()
     {
-        for (int i=0; i<gm.lvlMax.Length; i++)
+
+        bool buffet = true;
+        
+
+        for (int i=0; i<gm.levelList.Count; i++)
         {
-            float prop = (float)gm.lvlHS[i] / gm.lvlMax[i];
-            if (prop >= gm.StarPercent[2])
-            {
-                gm.lvlStar[i] = 3;
-            } else if (prop >= gm.StarPercent[1])
-            {
-                gm.lvlStar[i] = 2;
-            } else if (prop >= gm.StarPercent[0])
-            {
-                gm.lvlStar[i] = 1;
-            } else
-            {
-                gm.lvlStar[i] = 0;
+            Level level = gm.levelList[i];
+            print(level.maxScore());
+
+            int stars = 0;
+
+            if(level.highScore > level.minScore){
+                float percent = (level.highScore - level.minScore) / (level.maxScore() - level.minScore);
+                if(percent < .5){
+                    stars = 1;
+                }
+                else if(percent < .99){
+                    stars = 2;
+                }
+                else{
+                    stars = 3;
+                }
             }
+
+            if(stars == 0) buffet = false;
+
+            Transform levelGroup = LevelButtons.transform.GetChild(i);
+
+            for(int j = 0; j < stars; j++){
+                levelGroup.GetChild(j + 1).GetComponent<Image>().sprite = earnedStar;
+            }
+
         }
-        for (int i = 0; i<gm.lvlMax.Length; i++)
-        {
-            Image[] stars = LevelButtons.transform.GetChild(i).GetComponentsInChildren<Image>();
-            for (int j=1; j<=gm.lvlStar[i]; j++)
-            {
-                stars[j].sprite = earnedStar;
-            }
+
+        if(buffet || gm.DebugMode){
+            LevelButtons.transform.GetChild(gm.levelList.Count).gameObject.SetActive(true); // Buffet Mode button
+        }
+
+        if(gm.DebugMode){
+            LevelButtons.transform.GetChild(gm.levelList.Count + 1).gameObject.SetActive(true); // Debug Mode button
+
         }
     }
 }

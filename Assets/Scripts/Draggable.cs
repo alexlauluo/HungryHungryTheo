@@ -23,30 +23,19 @@ public class Draggable : MonoBehaviour
         rb.gravityScale = 0f;
         Vector2 mousePos = (Vector2)main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D[] hits = Physics2D.RaycastAll(mousePos, Vector2.zero, 1f);
-        if (!HasSushiCollider(hits))
-        {
-            rb.velocity = (mousePos - (Vector2)this.transform.position).normalized * dragSpeed;
-        }
-        else
-        {
-            rb.velocity = Vector2.zero;
-        }
+        Vector2 direction = (mousePos - (Vector2)this.transform.position);
+        rb.velocity = direction.normalized * dragSpeed * direction.magnitude;
+
     }
 
+    private void OnMouseDown()
+    {
+        AudioManager.instance.Play("pickup");
+        
+    }
     private void OnMouseUp()
     {
         rb.gravityScale = originalGravity;
-    }
-
-    private bool HasSushiCollider(RaycastHit2D[] hits)
-    {
-        for (int i = 0; i<hits.Length; i++)
-        {
-            if (hits[i].collider.Equals(sushiCollider))
-            {
-                return true;
-            }
-        }
-        return false;
+        
     }
 }

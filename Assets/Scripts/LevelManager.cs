@@ -2,55 +2,67 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
-    public static LevelManager instance;
+    // Serialized Fields
+    [SerializeField] private int levelIndex; 
+    [Header("UI")]
+    [SerializeField] private Text highScoreText;
+    [SerializeField] private Text minScoreText;
+    [SerializeField] private Text scoreText;
+    [SerializeField] private TextMeshProUGUI sushiCounterText;
 
     public Canvas UICanvas;
 
-    public int level; //still decrements, i.e. all levels in code and in hierarchy are always -1
+    [HideInInspector] public Level level;
 
-    private Spawner spawner;
-    private Text counterText;
     private int counter;
-
-    private Text HSText;
-    private Text ScoreText;
     private int Score;
-
-    private int sushiLeft;
 
     private void Awake()
     {
-        instance = this;
+        if(levelIndex >= 0){
+            level = GameManager.instance.levelList[levelIndex];
+        }
+        else{
+            level = null; // Buffet Mode
+        }  
 
-        //setup scores
-        HSText = UICanvas.transform.Find("High Score").GetComponent<Text>();
-        ScoreText = UICanvas.transform.Find("Score").GetComponent<Text>();
-
-        HSText.text = "High Score: " + GameManager.instance.lvlHS[level];
-        ScoreText.text = "Score: 0";
+        if(level == null){
+            highScoreText.text = "";
+            minScoreText.text = "";
+            scoreText.text = "Score: 0";
+        }
+        else{
+            highScoreText.text = "High Score: " + level.highScore;
+            minScoreText.text = "Required Score: " + level.minScore;
+            scoreText.text = "Score: 0";
+        }
 
         //setup sushicounter
-        spawner = FindObjectOfType<Spawner>();
-        counterText = UICanvas.transform.Find("Sushi Counter").GetComponentInChildren<Text>();
-        counter = spawner.sushiList.Length;
-        counterText.text = counter.ToString();
+        if(level != null) counter = level.spawnString.Length;
+        sushiCounterText.text = counter.ToString();
 
-        sushiLeft = spawner.sushiList.Length;
+    }
+
+    void Update(){
+        if(Input.GetKeyDown(KeyCode.Q)){
+            GameManager.instance.LoadLevel("Menu");
+        }
     }
 
     public void UpdateScore(int points)
     {
         Score += points;
-        ScoreText.text = "Score: " + Score.ToString();
+        scoreText.text = "Score: " + Score.ToString();
     }
 
     public void DecrementCounter()
     {
         counter--;
-        counterText.text = counter.ToString();
+        sushiCounterText.text = counter.ToString();
         if (counter == 0) //level ends
         {
             UpdateHS();
@@ -58,22 +70,12 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+
     private void UpdateHS()
     {
-        if (Score > GameManager.instance.lvlHS[level])
+        if (level != null && Score > level.highScore)
         {
-            GameManager.instance.lvlHS[level] = Score;
+            level.highScore = Score;
         }
     }
-
-    public void SushiLeave()
-    {
-        sushiLeft--;
-        if (sushiLeft == 0)
-        {
-            UpdateHS();
-            GameManager.instance.LoadLevel("Menu");
-        }
-    }
-
 }

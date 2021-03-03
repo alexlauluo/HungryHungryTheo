@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7255762924063768797}
   - component: {fileID: 7255762924063768796}
+  - component: {fileID: 106442251}
+  - component: {fileID: 106442250}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -43,10 +45,148 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96214eee7e8012a4dbfe4ea474592b42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelOneHS: 0
-  levelTwoHS: 0
-  levelThreeHS: 0
-  buffetHS: 0
-  unlockLevelTwo: 0
-  unlockLevelThree: 0
-  unlockBuffet: 0
+  levelList:
+  - highScore: 0
+    minScore: 2000
+    spawnString: 012301230123012301
+  - highScore: 0
+    minScore: 6000
+    spawnString: 3333010203101020130201020302
+  - highScore: 0
+    minScore: 8000
+    spawnString: 120300210123012030230102301023012030123
+  DebugMode: 0
+  sushiEatenCounter: 00000000000000000000000000000000
+--- !u!82 &106442251
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7255762924063768799}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ad40dddddbf895c47896050077f0ba0d, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.16
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &106442250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7255762924063768799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6da758727f187342b902cf55f9b90df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioList:
+  - name: Story
+    clip: {fileID: 8300000, guid: ad40dddddbf895c47896050077f0ba0d, type: 3}
+  - name: Menu
+    clip: {fileID: 8300000, guid: 1003fd8cb6217eb4ab47374ee58d45ac, type: 3}
+  - name: Level 1
+    clip: {fileID: 8300000, guid: 8f5c803558c510f40b06e7f7ac249b0a, type: 3}
+  - name: Level 2
+    clip: {fileID: 8300000, guid: a1533f1407864f445b1911418230fa69, type: 3}
+  - name: Level 3
+    clip: {fileID: 8300000, guid: 7db3beb53a262d140a15e11e8de48e16, type: 3}
+  - name: Buffet Mode
+    clip: {fileID: 8300000, guid: 15c8af34817f3404499540d78a0fb700, type: 3}
+  - name: select
+    clip: {fileID: 8300000, guid: 8c93dd618dac0de409cc375118490b0c, type: 3}
+  - name: bite
+    clip: {fileID: 8300000, guid: 7a5e2cb6bdbc7c74aa74190910998b86, type: 3}
+  - name: finish
+    clip: {fileID: 8300000, guid: bafbfcc7d545bf044afc8827203795a4, type: 3}
+  - name: back
+    clip: {fileID: 8300000, guid: 5c17f0744b5e10a4caa38f5a53b26606, type: 3}
+  - name: hover
+    clip: {fileID: 8300000, guid: d8dea7c8db8a162458c0be17743ef14a, type: 3}
+  - name: pickup
+    clip: {fileID: 8300000, guid: 248b5a02ce5949e47b67c5bf78031355, type: 3}

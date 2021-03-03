@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class DeathZone : MonoBehaviour
 {
+    [SerializeField] private LevelManager levelManager;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Sushi") || (collision.CompareTag("Plate")))
+        if (collision.CompareTag("Sushi"))
         {
+            levelManager.DecrementCounter();
             Destroy(collision.gameObject);
         }
 
